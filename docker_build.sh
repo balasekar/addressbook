@@ -14,7 +14,7 @@ echo "  Branch: ${GIT_BRANCH}"
 # copy WAR file into the current directory
 cp /var/lib/jenkins/workspace/addressbook_build/target/addressbook-2.0.war .
 
-docker build  --build-arg "GIT_BRANCH=${GIT_BRANCH}" -t "balasekar/${PROJECT_NAME}:${GIT_BRANCH}" .
+docker build -t "balasekar/${PROJECT_NAME}:${GIT_BRANCH}" .
 
 # Push the repository to our private Docker registry
 docker push "balasekar/${PROJECT_NAME}:${GIT_BRANCH}"
