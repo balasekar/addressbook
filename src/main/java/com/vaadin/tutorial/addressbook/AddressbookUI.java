@@ -1,7 +1,5 @@
 package com.vaadin.tutorial.addressbook;
 
-import javax.servlet.annotation.WebServlet;
-
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -17,6 +15,8 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.v7.data.util.BeanItemContainer;
 import com.vaadin.v7.ui.Grid;
 import com.vaadin.v7.ui.TextField;
+
+import javax.servlet.annotation.WebServlet;
 
 /* User Interface written in Java.
  *
@@ -114,6 +114,7 @@ public class AddressbookUI extends UI {
 
         // Split and allow resizing
         setContent(mainLayout);
+        System.out.println("This ");
     }
 
     /*

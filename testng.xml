@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke">
+    <test name="com.qa.unittests" preserve-order="true" parallel="classes" thread-count="6">
+        <method-selectors>
+            <method-selector>
+                <script language="beanshell"><![CDATA[
+                runTest = false;
+                groupIn = System.getProperty("includeGroups");
+                groupNotIn = System.getProperty("excludeGroups");
+
+                if ((groupIn == null) || (groupIn == "")) {
+                    runTest = false;
+                } else {
+                    StringTokenizer groupsTagList = new StringTokenizer(groupIn, ",");
+                    runTest = true;
+
+                    while (groupsTagList.hasMoreTokens()) {
+                      if (!(groups.containsKey(groupsTagList.nextToken())))
+                        runTest = false;
+                    }
+
+                    if (runTest && (groupNotIn != null) && (groupNotIn != "")) {
+                        StringTokenizer groupsNotInList = new StringTokenizer(groupNotIn, ",");
+
+                        while (groupsNotInList.hasMoreTokens()) {
+                           if ((groups.containsKey(groupsNotInList.nextToken())))
+                             runTest = false;
+                        }
+                     }
+                }
+                return runTest;
+                ]]>
+                </script>
+            </method-selector>
+        </method-selectors>
+        <packages>
+            <package name="com.qa.*" />
+        </packages>
+    </test>
+</suite>
